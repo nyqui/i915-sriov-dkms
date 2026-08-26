@@ -113,7 +113,8 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
 	kref_init(&job->refcount);
 	xe_exec_queue_get(job->q);
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 17, 0)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 17, 0)) || \
+    (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 103) && LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0))
 	err = drm_sched_job_init(&job->drm, q->entity, 1, NULL,
 				 q->xef ? q->xef->drm->client_id : 0);
 #else

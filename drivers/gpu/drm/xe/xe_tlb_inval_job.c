@@ -120,7 +120,8 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, struct xe_tlb_inval *tlb_inval,
 	}
 	job->fence = &ifence->base;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 17, 0)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 17, 0)) || \
+    (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 103) && LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0))
 	err = drm_sched_job_init(&job->dep.drm, entity, 1, NULL,
 				 q->xef ? q->xef->drm->client_id : 0);
 #else
