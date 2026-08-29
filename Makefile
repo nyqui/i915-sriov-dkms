@@ -1,5 +1,5 @@
 DKMS_MODULE_VERSION := "2026.03.05.6-sriov"
-DKMS_MODULE_ORIGIN_KERNEL := "6.19.14 with 6.18.44 patches"
+DKMS_MODULE_ORIGIN_KERNEL := "6.19.14 with 6.18.48 patches"
 
 LINUXINCLUDE := \
 	-I$(src)/include \
