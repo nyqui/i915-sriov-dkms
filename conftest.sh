@@ -80,30 +80,6 @@ ct_copy_from_user_inatomic_nontemporal() {
 	compile_check "$CODE" "IDB_COPY_FROM_USER_INATOMIC_NONTEMPORAL" 1
 }
 
-ct_pci_resize_resource_4args() {
-	CODE="
-	#include <linux/pci.h>
-	static void conftest_pci_resize_resource_4args(void)
-	{
-		pci_resize_resource(NULL, 0, 0, 0);
-	}
-	"
-
-	compile_check "$CODE" "IDB_PCI_RESIZE_RESOURCE_4ARGS" 1
-}
-
-ct_drm_fb_helper_alloc_info() {
-	CODE="
-	#include <drm/drm_fb_helper.h>
-	static void conftest_drm_fb_helper_alloc_info(void)
-	{
-		drm_fb_helper_alloc_info((struct drm_fb_helper *)NULL);
-	}
-	"
-
-	compile_check "$CODE" "IDB_HAVE_DRM_FB_HELPER_ALLOC_INFO" 1
-}
-
 ct_drm_exec_for_each_locked_object_no_index() {
 	CODE="
 	#include <drm/drm_exec.h>
@@ -119,6 +95,44 @@ ct_drm_exec_for_each_locked_object_no_index() {
 	"
 
 	compile_check "$CODE" "IDB_DRM_EXEC_FOR_EACH_LOCKED_OBJECT_NO_INDEX" 1
+}
+
+ct_drm_fb_helper_alloc_info() {
+	CODE="
+	#include <drm/drm_fb_helper.h>
+	static void conftest_drm_fb_helper_alloc_info(void)
+	{
+		drm_fb_helper_alloc_info((struct drm_fb_helper *)NULL);
+	}
+	"
+
+	compile_check "$CODE" "IDB_HAVE_DRM_FB_HELPER_ALLOC_INFO" 1
+}
+
+ct_drm_sched_job_init_5args() {
+	CODE="
+	#include <drm/gpu_scheduler.h>
+	static void conftest_drm_sched_job_init_5args(void)
+	{
+		struct drm_sched_job job;
+		struct drm_sched_entity entity;
+		drm_sched_job_init(&job, &entity, 0, NULL, 0);
+	}
+	"
+
+	compile_check "$CODE" "IDB_DRM_SCHED_JOB_INIT_5ARGS" 1
+}
+
+ct_pci_resize_resource_4args() {
+	CODE="
+	#include <linux/pci.h>
+	static void conftest_pci_resize_resource_4args(void)
+	{
+		pci_resize_resource(NULL, 0, 0, 0);
+	}
+	"
+
+	compile_check "$CODE" "IDB_PCI_RESIZE_RESOURCE_4ARGS" 1
 }
 
 ct_xe_pmt_telem_read_kernel_device() {

@@ -23,6 +23,7 @@ CONFTEST_COMPILE_TESTS := \
 	copy_from_user_inatomic_nontemporal \
 	drm_exec_for_each_locked_object_no_index \
 	drm_fb_helper_alloc_info \
+	drm_sched_job_init_5args \
 	pci_resize_resource_4args \
 	xe_pmt_telem_read_kernel_device
 
